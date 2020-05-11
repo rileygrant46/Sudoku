@@ -9,14 +9,6 @@ if not pg.mixer:
     print ("Warning, sounds disabled!")
 
 
-# declare generic variables
-#width = 504
-#height = 704
-#bgColor = (180, 180, 180)
-
-# instantiate a Util for use in file
-#util = Util()
-
 # game class, holds a Board object and variables
 class Game(pg.sprite.Sprite):
     """A class to represent a game"""
