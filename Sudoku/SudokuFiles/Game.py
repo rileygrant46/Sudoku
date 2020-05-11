@@ -8,17 +8,14 @@ if not pg.font:
 if not pg.mixer:
     print ("Warning, sounds disabled!")
 
-# setup static directories for graphics - never used in this
-#main_dir = os.path.split(os.path.abspath(__file__))[0]
-#data_dir = os.path.join(main_dir, "data")
 
 # declare generic variables
-width = 504
-height = 704
-bgColor = (180, 180, 180)
+#width = 504
+#height = 704
+#bgColor = (180, 180, 180)
 
 # instantiate a Util for use in file
-util = Util()
+#util = Util()
 
 # game class, holds a Board object and variables
 class Game(pg.sprite.Sprite):
@@ -28,15 +25,15 @@ class Game(pg.sprite.Sprite):
     def __init__(self):
         """requisite constructor"""
         pg.init()
-        self.screen = pg.display.set_mode((width, height))
+        self.board = Board()
+        self.gameWidth = self.board.bSize
+        self.gameHeight = self.board.bSize + (self.board.aTSize * 4)
+        self.screen = pg.display.set_mode((self.gameWidth, self.gameHeight))
         pg.display.set_caption("My Test!")
         pg.mouse.set_visible(1)
         # instantiate board and a utility object
-        self.board = Board()
         self.util = Util()
         self.running = False
-        self.gameWidth = self.board.bSize
-        self.gameHeight = self.board.bSize + (self.board.aTSize * 4)
         # prep background
         self.bgColor = (180, 180, 180)
         self.bg = pg.Surface(self.screen.get_size())
