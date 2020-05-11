@@ -4,8 +4,8 @@ import pygame as pg
 from pygame.compat import geterror
 
 # import modules from project
-from Sudoku.Tile import*
-from Sudoku.Board import*
+from SudokuFiles.Tile import*
+from SudokuFiles.Board import*
 
 # class for Utils
 class Util(object):

@@ -4,7 +4,7 @@ import pygame as pg
 from pygame.compat import geterror
 
 # import modules from project
-from Sudoku.Util import*
+from SudokuFiles.Util import*
 
 # a class to represent a Tile
 class Tile(pg.sprite.Sprite):

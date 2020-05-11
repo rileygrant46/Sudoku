@@ -7,8 +7,8 @@ from pygame.compat import geterror
 from random import*
 
 # import modules from project
-from Sudoku.Tile import*
-from Sudoku.Util import*
+from SudokuFiles.Tile import*
+from SudokuFiles.Util import*
 
 # class to represent a board
 class Board(pg.sprite.Sprite):
