@@ -13,6 +13,7 @@ if not pg.mixer:
 class Game(pg.sprite.Sprite):
     """A class to represent a game"""
 
+
     # the __init__ method as constructor
     def __init__(self):
         """requisite constructor"""
@@ -45,7 +46,6 @@ class Game(pg.sprite.Sprite):
         pg.display.update()
 
 
-    # TODO: TURN THIS INTO A METHOD THAT CALLS 2+ HELPERS - ITS UGGO
     # helper method for init
     def gameAddText(self):
         """Uses a Util helper to blit the info text onto the board"""
@@ -55,7 +55,7 @@ class Game(pg.sprite.Sprite):
         midX = int(bg.get_width() / 2)
         # add text above board with helper
         hSize = 36
-        hString = "I'm going to commit Sudoku"
+        hString = "Welcome to Sudoku!"
         hLocY = self.board.aTSize / 2
         self.util.placeTextOnBackground(bg, hSize, hString, textColor, midX, hLocY)
         # add text below board with helper
@@ -80,12 +80,13 @@ class Game(pg.sprite.Sprite):
     # update method for pygame
     def update(self):
         """Draws the game onto the background"""
-        # display the background
-        # screen.blit(background, (0, 0))
-        # pg.display.update()
+        # ended up doing nothing here, the background only gets drawn once
+        #  and just runs update() on the board
+        pass
 
 
     def runGame(self):
+        """Runs the game"""
         # run main loop stuff
         self.running = True
         while (self.running):
@@ -100,6 +101,7 @@ class Game(pg.sprite.Sprite):
 
 
     def gameHandleEvents(self, event):
+        """Runs all event handlers"""
         self.endGameHandlers(event)
         self.mouseClickHandler(event)
         self.arrowKeysHandler(event)
@@ -110,6 +112,7 @@ class Game(pg.sprite.Sprite):
 
 
     def endGameHandlers(self, event):
+        """Handler to end game"""
         # handlers to end game
         if event.type == pg.QUIT:
             self.running = False
@@ -118,6 +121,7 @@ class Game(pg.sprite.Sprite):
 
 
     def mouseClickHandler(self, event):
+        """Handler for mouse click"""
         # handler to click to make a tile active
         if (event.type == pg.MOUSEBUTTONDOWN and event.button == 1):
             pos = pg.mouse.get_pos()
@@ -130,6 +134,7 @@ class Game(pg.sprite.Sprite):
 
 
     def arrowKeysHandler(self, event):
+        """Handler for arrow keys"""
         # initialize list to check
         arrowKeys = [pg.K_UP, pg.K_DOWN, pg.K_LEFT, pg.K_RIGHT]
         # number keys for shifting active handler
@@ -156,6 +161,7 @@ class Game(pg.sprite.Sprite):
                 self.board.setCurrentActive(tile)
 
     def inputNumberHandler(self, event):
+        """Handler for input of numbers"""
         # relevant lists
         numberGuesses = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 69, 0, 0]
         numberGuesses2 = [pg.K_0, pg.K_1, pg.K_2, pg.K_3, pg.K_4,
@@ -170,21 +176,25 @@ class Game(pg.sprite.Sprite):
             self.board.setCurrentActiveNumber(num)
 
     def generatePuzzleHandler(self, event):
+        """Handler for generating puzzle"""
         if (event.type == pg.KEYDOWN and event.key == pg.K_g):
             self.board.generatePuzzle()
 
     def clearBoardHandler(self, event):
+        """Handler to clearing board"""
         # wipe board handler
         if (event.type == pg.KEYDOWN and event.key == pg.K_c):
             self.board.wipeBoard()
 
     def solveBoardHandler(self, event):
+        """Handler for solving board"""
         # solve board handler
         if (event.type == pg.KEYDOWN and event.key == pg.K_k):
             self.board.solveBoard()
 
 
     def doEveryTick(self):
+        """runs this every tick"""
         self.allsprites.update()
         self.screen.blit(self.bg, (0, 0))
         self.allsprites.draw(self.screen)

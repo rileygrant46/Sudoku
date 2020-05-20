@@ -9,7 +9,6 @@ from SudokuFiles.Util import*
 # a class to represent a Tile
 class Tile(pg.sprite.Sprite):
     """A class to represent a sudoku tile
-    PARAMETER STUFF
     . tileColor      (tuple)
     . loTileColors   (List of tuples)
     . numColor       (tuple)
@@ -124,7 +123,6 @@ class Tile(pg.sprite.Sprite):
     # === setters
     def setActive(self):
         """Sets the active parameter to True, and color accordingly"""
-        # TODO: FIX SOME SHIT
         self.active = True
         self.tileColor = (190, 190, 190)
         self.image.fill( self.tileColor )

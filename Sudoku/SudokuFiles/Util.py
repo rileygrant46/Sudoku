@@ -14,6 +14,7 @@ class Util(object):
     # constructor for a util
     def __init__(self):
         """init method to construct a Util object"""
+        # really this does nothing, UTILs are only important for their methods
         pass
 
 

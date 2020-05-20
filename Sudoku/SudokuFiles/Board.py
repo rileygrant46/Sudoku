@@ -13,7 +13,6 @@ from SudokuFiles.Util import*
 # class to represent a board
 class Board(pg.sprite.Sprite):
     """a board for testing purposes
-    FIELDS SHIT:
     arrayTiles (2d array of Tile objects)
     """
 
@@ -51,7 +50,7 @@ class Board(pg.sprite.Sprite):
 
     def update(self):
         """draws the object based on rando things"""
-        # do the pygame shit
+        # needed for Pygame
         myRect = pg.Rect( (1, 1), ( ( self.bSize ), ( self.bSize ) ) )
         mySurface = pg.Surface( ( ( self.bSize ), ( self.bSize ) ) )
         mySurface.fill( self.bColors[0] )
@@ -60,7 +59,6 @@ class Board(pg.sprite.Sprite):
         self.drawTilesOnBoard(mySurface)
         # declare surface and rect
         self.rect = myRect
-        # TODO: MAGIC NUMBERS HERE
         self.rect.midtop = ( (self.bSize / 2) , self.aTSize)
         # set the field to the just created one
         self.image = mySurface
@@ -128,7 +126,6 @@ class Board(pg.sprite.Sprite):
         col = val[1]
         # if not, proceed with recursive backtracking algorithm
         for numCheck in range(1, 10):
-            #DEBUG LINE: print("  * Check safety of number: " + str(numCheck) )
             # calls check if safe, and if safe, assigns and recurs
             if (self.checkIfSafe(numCheck, row, col) ):
                 self.arrayTiles[row][col].setNumber(numCheck)
@@ -141,7 +138,6 @@ class Board(pg.sprite.Sprite):
                 # otherwise, reset this tile to 0
                 self.arrayTiles[row][col].setNumber(0)
         # and backtrack to look for a solution
-        #DEBUG LINE: print("- About to backtrack from: " + str(val) )
         return False
 
     # helper for solveBoard
@@ -208,7 +204,6 @@ class Board(pg.sprite.Sprite):
             rowChunk = int(aRow / 3)
             colChunk = int(aCol / 3)
             # loops to add the stuff
-            # TODO: can improve efficiency here!!!
             for i in range(0, 9):
                 for j in range(0, 9):
                     tileCheck = self.arrayTiles[i][j]
@@ -308,8 +303,6 @@ class Board(pg.sprite.Sprite):
             tile = self.arrayTiles[0][i]
             tile.setNumber( l[i] )
             # already updates in set all colors, called right after
-            #tile.update()
-            # TODO: make a method to update all tiles
 
 
     # helper for generate puzzle
@@ -326,6 +319,7 @@ class Board(pg.sprite.Sprite):
     def obscureTiles(self):
         oCount = 45
         rand = Random()
+        # just obscure random tiles until the number ticks to 0
         while (oCount != 0):
             randRow = rand.randint(0, 8)
             randCol = rand.randint(0, 8)
@@ -334,5 +328,6 @@ class Board(pg.sprite.Sprite):
                 randTile.setNumber(0)
                 oCount = oCount - 1
                 randTile.update()
+            # if its already 0, loop around
             else:
                 pass
