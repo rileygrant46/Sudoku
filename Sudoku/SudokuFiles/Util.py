@@ -3,10 +3,6 @@ import os
 import pygame as pg
 from pygame.compat import geterror
 
-# import modules from project
-from SudokuFiles.Tile import*
-from SudokuFiles.Board import*
-
 # class for Utils
 class Util(object):
     """A util class for generic methods"""
