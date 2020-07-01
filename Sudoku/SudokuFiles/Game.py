@@ -1,6 +1,6 @@
 # import relevant modules
-from SudokuFiles.Board import*
-from SudokuFiles.Util import*
+from .Board import*
+from .Util import*
 
 # issue warning if Pygame modules don't properly load
 if not pg.font:
@@ -22,7 +22,7 @@ class Game(pg.sprite.Sprite):
         self.gameWidth = self.board.bSize
         self.gameHeight = self.board.bSize + (self.board.aTSize * 4)
         self.screen = pg.display.set_mode((self.gameWidth, self.gameHeight))
-        pg.display.set_caption("My Test!")
+        pg.display.set_caption("Sudoku")
         pg.mouse.set_visible(1)
         # instantiate board and a utility object
         self.util = Util()

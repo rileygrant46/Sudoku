@@ -218,7 +218,7 @@ class Board(pg.sprite.Sprite):
 
     # helper for checkCol, Row, Squ
     def checkListOK(self, aList):
-        """ check list to see if the number is already contained"""
+        """Check list to see if the number is already contained"""
         toReturn = True
         for q in range(1, 10):
             if(aList.count(q) > 1):

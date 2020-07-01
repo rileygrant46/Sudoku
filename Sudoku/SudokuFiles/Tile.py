@@ -45,7 +45,7 @@ class Tile(pg.sprite.Sprite):
         # list of tile and number colors
         self.loTileColors = [ (210, 210, 210), (190, 190, 250)]
         self.tileColor = self.loTileColors[0]
-        self.loNumColors = [ (20, 20, 20), (80, 80, 80), (200, 10, 250) ]
+        self.loNumColors = [ (10, 10, 10), (100, 100, 100), (200, 10, 250) ]
         self.numColor  = self.loNumColors[0]
 
         # initialize the guesses field, and the active field as none
@@ -59,6 +59,47 @@ class Tile(pg.sprite.Sprite):
         self.rect = myRect
         self.image = mySurface
 
+    # === setters
+    def setActive(self):
+        """Sets the active parameter to True, and color accordingly"""
+        self.active = True
+
+
+    def setInactive(self):
+        """Sets the field 'Active' to False"""
+        self.active = False
+
+
+    def setNumber(self, num):
+        """Sets the field 'Number' to the given one"""
+        self.num = num
+
+
+    def setColor(self, color):
+        """Sets the field 'color' to the given one"""
+        self.numColor = color
+
+
+    # === getters
+    def getRow(self):
+        """Returns the value of the field 'Row'"""
+        return self.row
+
+
+    def getCol(self):
+        """Returns the value fo the field 'Col'"""
+        return self.col
+
+
+    def getTileSize(self):
+        """Returns the value of the field 'size'"""
+        return self.size
+
+
+    def getTileBuffer(self):
+        """Returns the value of the field 'buffer'"""
+        return self.sideBuffer
+
 
     # update method required for Pygame
     def update(self):
@@ -66,7 +107,7 @@ class Tile(pg.sprite.Sprite):
         # create the surface to pass to helpers
         mySurface = pg.Surface( (self.size, self.size) )
         # call method to set the color, then actually fill with color
-        self.checkAndSetColor(mySurface)
+        self.checkAndSetColor()
         mySurface.fill(self.tileColor)
         # call method to set the number
         self.checkAndSetNumber(mySurface)
@@ -75,7 +116,7 @@ class Tile(pg.sprite.Sprite):
 
 
     # helper method to check if active and set color if so
-    def checkAndSetColor(self, mySurface):
+    def checkAndSetColor(self):
         """Checks to see if the tile is active, accordingly sets color"""
         # if its active set to light blue
         if (self.active):
@@ -109,56 +150,12 @@ class Tile(pg.sprite.Sprite):
     def setColorType(self, type):
         """Sets the text color based on inputted string"""
         # color black by default
-        tempColor = (0, 0, 0)
+        tempColor = self.loNumColors[0]
         # guesses are dark grey
         if (type == "input"):
-            tempColor = (100, 100, 100)
+            tempColor = self.loNumColors[1]
         # output by 'solve' method are purple
         elif (type == "solve"):
-            tempColor = (200, 10, 250)
+            tempColor = self.loNumColors[2]
         # call the setter to actually set it
         self.setColor(tempColor)
-
-
-    # === setters
-    def setActive(self):
-        """Sets the active parameter to True, and color accordingly"""
-        self.active = True
-        self.tileColor = (190, 190, 190)
-        self.image.fill( self.tileColor )
-
-
-    def setInactive(self):
-        """Sets the field 'Active' to False"""
-        self.active = False
-
-
-    def setNumber(self, num):
-        """Sets the field 'Number' to the given one"""
-        self.num = num
-
-
-    def setColor(self, color):
-        """Sets the field 'color' to the given one"""
-        self.numColor = color
-
-
-    # === getters
-    def getRow(self):
-        """Returns the value of the field 'Row'"""
-        return self.row
-
-
-    def getCol(self):
-        """Returns the value fo the field 'Col'"""
-        return self.col
-
-
-    def getTileSize(self):
-        """Returns fhte value of the field 'size'"""
-        return self.size
-
-
-    def getTileBuffer(self):
-        """Returns the value of the field 'buffer'"""
-        return self.sideBuffer
