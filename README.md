@@ -1,5 +1,5 @@
 # Sudoku
-My sudoku game!
+My sudoku game that supports playing with a GUI and solving with backtracking.
 
 Created on Python 3.8 and Pygame 2.0.0.dev6.
 Requires both Python and Pygame to run.
